@@ -3,19 +3,22 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import DisplayHome from './DisplayHome.jsx';
 import DisplayAlbum from './DisplayAlbum.jsx';
 import { albumsData } from '../assets/assets';
+import { useParams } from 'react-router-dom';
 
 const Display = () => {
   const displayRef = useRef();
   const location = useLocation();
+  const { id: albumId } = useParams(); // More reliable ID extraction
   const isAlbum = location.pathname.includes("album");
-  const albumId = isAlbum ? location.pathname.slice(-1) : "";
   const bgColor = albumsData[Number(albumId)]?.bgColor || "#121212";
 
   useEffect(() => {
-    if (isAlbum) {
-      displayRef.current.style.background = `linear-gradient(${bgColor},#121212)`;
-    } else {
-      displayRef.current.style.background = `#121212`;
+    if (displayRef.current) { // Added safety check
+      if (isAlbum) {
+        displayRef.current.style.background = `linear-gradient(${bgColor},#121212)`;
+      } else {
+        displayRef.current.style.background = `#121212`;
+      }
     }
   }, [isAlbum, bgColor]);
 
