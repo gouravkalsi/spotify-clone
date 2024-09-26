@@ -1,7 +1,7 @@
 import React, { useContext } from 'react' //(rafce)
-import Sidebar from './components/sidebar'
-import Player from './components/Player'
-import Display from './components/Display'
+import Sidebar from './components/sidebar.jsx'
+import Player from './components/Player.jsx'
+import Display from './components/Display.jsx'
 import { PlayerContext } from './context/PlayerContext'
 
 const App = () => {
